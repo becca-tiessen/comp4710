@@ -1,0 +1,25 @@
+Analyzing Text Frequency in Questions:
+*Note: The format is (‘X’,Y) where ‘X’ indicates the word and Y indicates the frequency of the word
+
+Gender
+Females
+[('public', 27), ('return', 23), ('to', 15), ('new', 13), ('get', 13), ('the', 12), ('private', 12), ('set', 12), ('value;', 12), ('if', 11)]
+Males
+[('the', 206), ('i', 158), ('to', 128), ('a', 97), ('is', 81), ('in', 67), ('and', 66), ('it', 62), ('that', 51), ('of', 47)]
+
+Location
+AF
+[('the', 10), ('of', 8), ('a', 7), ('to', 5), ('in', 4), ('i', 4), ('get', 3), ('this', 3), ('tried', 3), ('android:layout_height""wrap_content""', 2)]
+
+AS
+[('lt;div', 33), ('i', 33), ('the', 29), ('lt;/divgt;', 26), ('in', 24), ('to', 23), ('public', 22), ('as', 22), ('set', 21), ('is', 21)]
+
+EU
+[('the', 152), ('i', 109), ('to', 85), ('a', 67), ('is', 54), ('it', 42), ('and', 39), ('in', 38), ('this', 37), ('that', 36)]
+
+NA
+[('to', 20), ('the', 19), ('i', 12), ('a', 10), ('drive', 10), ('output', 9), ('and', 8), ('it', 8), ('for', 7), ('path', 7)]
+
+SA
+[('i', 11), ('to', 10), ('lt;', 10), ('the', 8), ('is', 7), ('or', 5), ('function', 5), ('this', 5), ('my', 4), ('and', 4)]
+
