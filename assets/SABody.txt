@@ -1,0 +1,42 @@
+"<p>I have 10 Vectors in my R environment. I want to paste this vectors for create a data frame. I used the <code>rbind</code> function, but i think that is very inefficient, because i have to type all variables in the function. The question is, can i use the <code>paste0</code> or <code>paste</code> function or other function like that, for paste this vectors?, thank you.</p>
+
+<pre><code>#Por ejemplo
+
+x1 &lt;- c(1, 2)
+x2 &lt;- c(3, 4)
+x3 &lt;- c(5, 6)
+x4 &lt;- c(7, 8)
+x5 &lt;- c(9, 10)
+x6 &lt;- c(11, 12)
+x7 &lt;- c(13, 14)
+x8 &lt;- c(15, 16)
+x9 &lt;- c(17, 18)
+x10 &lt;- c(19, 30)
+
+rbind(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10)
+</code></pre>
+
+<p>I want to paste this vectors, without <code>rbind</code>, with some function like <code>paste0</code> or <code>paste</code>.</p>"
+"<p>The issue is i want to kill a process only if its running, otherwise i want to do something else.</p>
+
+<p>This is my code right now (sublime as an example): </p>
+
+<pre><code>try {
+Process p = Runtime.getRuntime().exec(""pidof sublime_text"");
+
+if (p != null){
+Runtime.getRuntime().exec(""pkill -f sublime"");
+}
+}
+catch (Exception e) {
+System.out.println(e.getMessage());
+}
+</code></pre>
+
+<p><code>Runtime.getRuntime().exec(""pidof sublime_text"");</code> ALWAYS returns a process, even if this one doesn't exist, i mean, i can execute: <code>Runtime.getRuntime().exec(""pidof nonExistingProcess"");</code> and this will still return a process without error, and then the kill ""pkill"" command
+<code>Runtime.getRuntime().exec(""pkill -f nonExistingProcess"");</code> doesn't throw an Exception either, what can i do?</p>
+"
+"<p>I have an application that was build with Struts 1.x and her front-end is JSP with FLEX (Action-Script), my idea is to change the front to Angular 6. And my back-end dosen't support REST. </p>
+
+<p>What is the best option to Struts suport REST?
+I should just add <a href=""https://jersey.github.io/"" rel=""nofollow noreferrer"">Jersey</a>, or upgrade the entire application to Struts 2.x or even more upgrade to SpringMVC?</p>"

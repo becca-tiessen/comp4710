@@ -1,0 +1,55 @@
+"<p>Can someone please explain to me how to use this function </p>
+
+<pre><code>getRoleByUser()
+</code></pre>
+
+<p>for related tables to get role of logged in user</p>
+
+<p>I tried this </p>
+
+<pre><code>$Role = Yii::$app-&gt;authManager-&gt;getRolesByUser(Yii::$app-&gt;user-&gt;getId());
+print_r($Role);
+exit();
+</code></pre>
+
+<p>but I got the following error</p>
+
+<pre><code>Getting unknown property: yii\web\Application::findByUsername
+</code></pre>
+"
+"<p>I tried to create an actionBar like this one, ""this is a website template "" </p>
+
+<p><a href=""https://i.stack.imgur.com/OUHjy.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/OUHjy.png"" alt=""""></a></p>
+
+<p>so I created a file <code>action_bar.xml</code> which I'll inflate, A <code>RelativeLayout</code> which has a height of <code>wrap_content</code> &amp; a width of <code>match_parent</code> , it has the gear icon and all other details except that I can't get a part of the round picture outside of the <code>RelativeLayout</code> like the picture.</p>
+
+<p>I tried using margins but it doesn't get out of the <code>RelativeLayout</code>, The <code>RelativeLayout</code> gets extended instead. so, More <code>margin</code> in the picture results in more height in <code>RelativeLayout</code>.
+Any suggestions? </p>
+
+<pre><code>&lt;?xml version=""1.0"" encoding=""utf-8""?&gt;
+&lt;RelativeLayout xmlns:android=""http://schemas.android.com/apk/res/android""
+android:layout_width=""match_parent""
+android:layout_height=""wrap_content""&gt;
+
+&lt;ImageButton android:src=""@drawable/roundPicture""
+android:layout_width=""wrap_content""
+android:layout_height=""wrap_content""
+android:layout_alignParentLeft=""true""
+android:layout_marginTop=""30sp""
+android:layout_marginLeft=""30sp""
+android:padding=""0sp""/&gt;
+
+&lt;ImageButton
+android:id=""@+id/gearIcon""
+android:layout_alignParentRight=""true""
+android:background=""@drawable/gearICON""
+android:layout_width=""wrap_content""
+android:layout_height=""wrap_content""
+android:layout_margin=""10sp""
+/&gt;
+&lt;/RelativeLayout&gt;
+</code></pre>
+
+<p>No Libraries please, I'm not making an app, I'm just trying to understand.</p>
+
+<p>quick recap. I want a part of the first <code>ImageButton</code> outside of the <code>RelativeLayout</code></p>"

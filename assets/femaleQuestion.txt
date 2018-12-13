@@ -1,0 +1,362 @@
+"<p>As refer in this <a href=""https://stackoverflow.com/questions/38492827/how-to-get-a-string-list-from-firebase-to-fill-a-spinner"">link</a>. I want to try in my coding apps. But it didnt retrieve any data from my firebase database. I just cant figure out how to fix it. Can someone please help me. Is there any idea, where did I miss?</p>
+
+<p>My firebase database as show image below:-</p>
+
+<p><a href=""https://i.stack.imgur.com/58WNd.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/58WNd.png"" alt=""enter image description here""></a></p>
+
+<p>Spinner coding:-</p>
+
+<pre><code>mDatabase = FirebaseDatabase.getInstance().getReference();
+mDatabase.keepSynced(true);
+
+mDatabase.child(""Advertisement"").child(mAuth.getUid()).addValueEventListener(new ValueEventListener()
+{
+@Override
+public void onDataChange(DataSnapshot dataSnapshot)
+{
+//final List&lt;String&gt; name = new ArrayList&lt;String&gt;();
+ArrayList&lt;String&gt; identity = new ArrayList&lt;&gt;();
+identity.add(0, ""Choose Tuition Centre"");
+
+for (DataSnapshot nameSnapshot: dataSnapshot.getChildren())
+{
+String tuitionName = nameSnapshot.child(""adstuitioname"").getValue(String.class);
+identity.add(tuitionName);
+}
+
+ArrayAdapter&lt;String&gt; nameAdapter = new ArrayAdapter&lt;String&gt;(RatingActivity.this, android.R.layout.simple_spinner_item, identity);
+nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+mName.setAdapter(nameAdapter);
+}
+
+
+@Override
+public void onCancelled(DatabaseError databaseError) {
+
+}
+});
+
+mName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+{
+@Override
+public void onItemSelected(AdapterView&lt;?&gt; parent, View view, int position, long id)
+{
+if(position==0)
+{
+//Toast.makeText(getApplicationContext(),""No Item Selected"",Toast.LENGTH_LONG).show();
+}
+
+else
+{
+Toast.makeText(getApplicationContext(),parent.getItemAtPosition(position) +"" Selected"",Toast.LENGTH_SHORT).show();
+}
+}
+
+@Override
+public void onNothingSelected(AdapterView&lt;?&gt; parent)
+{
+// TODO Auto-generated method stub
+}
+});
+</code></pre>"
+"<pre><code> import mysql.connector as conn
+
+mydb = conn.connect(
+host=""localhost"",
+user=""root"",
+passwd=""password"",
+database=""python_mysql""
+)
+
+mycursor = mydb.cursor()
+</code></pre>
+
+<blockquote>
+<h1>To count the number of tables in database ""python_mysql""</h1>
+
+<pre><code> mycursor.execute(""SELECT FOUND_ROWS();"") #This contains 3 as result
+</code></pre>
+
+<p>How to print the result as 3 by taking it in a new variable</p>
+</blockquote>"
+"<p>I'm starting a test project on VS 2017 for a new module of an old software. I'm new to TDD and unit test so I wonder if this is the correct way to do this...</p>
+
+<p>I started by testing how objects are added to the lists of the viewmodel class :</p>
+
+<pre><code>[TestClass]
+public class RTCM_Config_Test
+{
+static RTCM_Bouton input = new RTCM_Bouton();
+static RTCM_Sortie output = new RTCM_Sortie();
+
+[TestMethod]
+public void CreateConfig()
+{
+//Arrange
+//Act
+RTCM_Config conf = new RTCM_Config();
+//Assert
+Assert.IsNotNull(conf);
+}
+
+[TestMethod]
+public void AddNewInputInConfig()
+{
+//Arrange
+RTCM_Config conf = new RTCM_Config();
+//Act
+bool isOk = conf.CreateElements(input);
+//Assert
+Assert.IsTrue(isOk);
+}
+
+[TestMethod]
+public void AddNewOutputInConfig()
+{
+//Arrange
+RTCM_Config conf = new RTCM_Config();
+//Act
+bool isOk = conf.CreateElements(output);
+//Assert
+Assert.IsTrue(isOk);
+}
+
+}
+</code></pre>
+
+<p>And the CreateElements functions in the view model :</p>
+
+<pre><code> public bool CreateElements(RTCM_Bouton btn)
+{
+if (listButtonsInput == null) return false;
+
+if (btn == null) return false;
+
+if (listButtonsInput.Count &gt;= 10) return false;
+
+return true;
+
+}
+
+public bool CreateElements(RTCM_Sortie sortie)
+{
+if (listButtonsOutput == null) return false;
+
+if (sortie == null) return false;
+
+if (listButtonsOutput.Count &gt;= 10) return false;
+
+return true;
+}
+</code></pre>
+
+<p>Before test methods, I declare static input and output objects as test parameters, is it the good way to do ? Or should I declare test object in each test method ?</p>
+
+<p>Thank you !</p>"
+"<p>I have an XML as shown below.</p>
+
+<pre><code>&lt;?xml version=""1.0"" encoding=""utf-8""?&gt;
+&lt;RoleManagement xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema""&gt;
+&lt;Permissions&gt;
+&lt;Group Name=""Test Case Management""&gt;
+&lt;Permission ID=""1"" Name=""Add/Edit/Delete test cases"" /&gt;
+&lt;Permission ID=""2"" Name=""Assign Test cases to users"" /&gt;
+&lt;/Group&gt;
+&lt;Group Name=""Bug Management""&gt;
+&lt;Permission ID=""9"" Name=""Add/Edit/Delete bugs"" /&gt;
+&lt;Permission ID=""13"" Name=""View bugs"" /&gt;
+&lt;/Group&gt;
+&lt;Group Name=""Administration""&gt;
+&lt;Permission ID=""19"" Name=""Database backup"" /&gt;
+&lt;Permission ID=""20"" Name=""Role Management"" /&gt;
+&lt;/Group&gt;
+&lt;/Permissions&gt;
+&lt;RolePermissions&gt;
+&lt;RolePermission RedmineId=""8"" PermissionID=""9"" /&gt;
+&lt;RolePermission RedmineId=""8"" PermissionID=""13"" /&gt;
+&lt;/RolePermissions&gt;
+&lt;Roles&gt;
+&lt;Role Name=""Manager"" RedmineId=""8"" TestlinkId=""15"" /&gt;
+&lt;/Roles&gt;
+&lt;/RoleManagement&gt;
+</code></pre>
+
+<p>I need to load the data from xml to C# classes using <code>XmlSerializer</code>.</p>
+
+<p><strong>What I have done so Far</strong> </p>
+
+<hr>
+
+<p>I have created these classes.</p>
+
+<pre><code> [Serializable()]
+[System.Xml.Serialization.XmlType(AnonymousType = true)]
+[System.Xml.Serialization.XmlRoot(Namespace = """", IsNullable = false)]
+public partial class RoleManagement
+{
+private List&lt;Group&gt; permissionGroupsField;
+private List&lt;RolePermission&gt; rolePermissionsField;
+private List&lt;Role&gt; rolesField;
+[System.Xml.Serialization.XmlArrayItem(""Group"", IsNullable = false)]
+public List&lt;Group&gt; PermissionGroups
+{
+get { return this.permissionGroupsField; }
+set { this.permissionGroupsField = value; }
+}
+[System.Xml.Serialization.XmlArrayItem(""RolePermission"", IsNullable = false)]
+public List&lt;RolePermission&gt; RolePermissions
+{
+get { return this.rolePermissionsField; }
+set { this.rolePermissionsField = value; }
+}
+[System.Xml.Serialization.XmlArrayItem(""Role"", IsNullable = false)]
+public List&lt;Role&gt; Roles
+{
+get { return this.rolesField; }
+set { this.rolesField = value; }
+}
+}
+
+[Serializable()]
+[System.Xml.Serialization.XmlType(AnonymousType = true)]
+public partial class Group
+{
+private List&lt;Permission&gt; permissionsField;
+private string nameField;
+[System.Xml.Serialization.XmlElement(""Permission"")]
+public List&lt;Permission&gt; Permissions
+{
+get { return this.permissionsField; }
+set { this.permissionsField = value; }
+}
+[System.Xml.Serialization.XmlAttribute(""Name"")]
+public string GroupName
+{
+get { return this.nameField; }
+set { this.nameField = value; }
+}
+}
+
+[Serializable()]
+[System.Xml.Serialization.XmlType(AnonymousType = true)]
+public partial class Permission
+{
+private int idField;
+private string nameField;
+[System.Xml.Serialization.XmlAttribute()]
+public int ID
+{
+get { return this.idField; }
+set { this.idField = value; }
+}
+[System.Xml.Serialization.XmlAttribute()]
+public string Name
+{
+get { return this.nameField; }
+set { this.nameField = value; }
+}
+}
+
+[Serializable()]
+[System.Xml.Serialization.XmlType(AnonymousType = true)]
+public partial class RolePermission
+{
+private int redmineIdField;
+private int permissionIDField;
+[System.Xml.Serialization.XmlAttribute()]
+public int RedmineId
+{
+get { return this.redmineIdField; }
+set { this.redmineIdField = value; }
+}
+[System.Xml.Serialization.XmlAttribute()]
+public int PermissionID
+{
+get { return this.permissionIDField; }
+set { this.permissionIDField = value; }
+}
+}
+
+[System.Xml.Serialization.XmlType(AnonymousType = true)]
+public partial class Role
+{
+private string nameField;
+private int redmineIdField;
+private int testlinkIdField;
+[System.Xml.Serialization.XmlAttribute()]
+public string Name
+{
+get { return this.nameField; }
+set { this.nameField = value; }
+}
+[System.Xml.Serialization.XmlAttribute()]
+public int RedmineId
+{
+get { return this.redmineIdField; }
+set { this.redmineIdField = value; }
+}
+[System.Xml.Serialization.XmlAttribute()]
+public int TestlinkId
+{
+get { return this.testlinkIdField; }
+set { this.testlinkIdField = value; }
+}
+}
+</code></pre>
+
+<p><strong>My Problem</strong></p>
+
+<hr>
+
+<p>Data is correctly loaded for <code>&lt;RolePermissions&gt;</code> node and <code>&lt;Roles&gt;</code> node. But data for <code>&lt;Permissions&gt;</code> node are not loading at all. Its always null.</p>
+
+<p>Is there anything else i need to add to get data from list inside another list?</p>
+
+<p>Is there anything I miss? </p>"
+"<p>I have an object array like</p>
+
+<pre><code>array[0] = {id: 1, name: ""First""}
+array[1] = {id: 2, name: ""Second""}
+</code></pre>
+
+<p>Which I've tried to sort by <code>name</code> field by using:</p>
+
+<pre><code>Array.prototype.alphanumSort = function (caseInsensitive) {
+for (var z = 0, t; t = ((typeof this[z] == ""string"" || typeof this[z] == ""undefined"") ? this[z] : this[z].name); z++) {
+this[z] = new Array();
+var x = 0, y = -1, n = 0, i, j;
+
+while (i = (j = t.charAt(x++)).charCodeAt(0)) {
+var m = (i == 46 || (i &gt;= 48 &amp;&amp; i &lt;= 57));
+if (m !== n) {
+this[z][++y] = """";
+n = m;
+}
+this[z][y] += j;
+}
+}
+
+this.sort(function (a, b) {
+for (var x = 0, aa, bb; (aa = a[x]) &amp;&amp; (bb = b[x]); x++) {
+if (caseInsensitive) {
+aa = aa.toLowerCase();
+bb = bb.toLowerCase();
+}
+if (aa !== bb) {
+var c = Number(aa), d = Number(bb);
+if (c == aa &amp;&amp; d == bb) {
+return c - d;
+} else return (aa &gt; bb) ? 1 : -1;
+}
+}
+return a.length - b.length;
+});
+
+for (var z = 0; z &lt; this.length; z++)
+this[z] = this[z].join("""");
+}
+</code></pre>
+
+<p>but the list that I'm getting back from it contains an array with just the <code>name</code> field from it, without the corresponding <code>id</code>. Why is this happening?
+Is there a way to apply this algorithm to filter objects?
+I'm new in JavaScript, so please be gentle.</p>"

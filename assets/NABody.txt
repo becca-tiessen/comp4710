@@ -1,0 +1,111 @@
+"<p>I need to list users of a connected drive and it's serial # in an output file. I'll be connecting between 12-24 drives in arrays at a time. I would like to be able to put the assigned drive letters into a variable. And then have the entire script loop for each connected drive. dumping serial + linking it to the users of that drive in a CSV output file</p>
+
+<p>How can I put the assigned drive letters into an array?</p>
+
+<pre><code>$(get-physicaldisk; get-childitem -path (array variable):\Users) | add-content C:\path\to\my\output.csv
+</code></pre>
+
+<p>almost gets the output I need when I try this on a single drive. But I'd really like to clean it up and only display the important info (<code>PSChildName</code>) excluding all default, public admin accounts to reduce duplicate un-needed info. </p>
+
+<p>I wanted this to work </p>
+
+<pre><code>$(get-physicaldisk | select-object FriendlyName, SerialNumber)-$(get-childitem -path L:\Users| select-object PSChildName)
+</code></pre>
+
+<p>but it did not</p>
+
+<p>I need it to grab the serial for each drive - and output the users associated with that drive … i'm struggling with making the output look the way I want.</p>
+
+<p>For each - drive in array - output ((serial #) + (users on the drive)) amending my .csv</p>
+
+<p>After much plugging and chugging i'm now here, thanks to everyone's help</p>
+
+<pre><code>function Get-UsersOnDrive([string[]]$DriveLetters){
+if (!$DriveLetters){
+$DriveLetters = Get-WmiObject Win32_Logicaldisk | %{$_.Name -replace "":"", """"}
+}
+
+foreach($DriveLetter in $DriveLetters)
+{
+$SerialNumber = get-partition -DriveLetter $DriveLetter -ErrorAction Ignore | get-disk | select -ExpandProperty SerialNumber
+$path = $DriveLetter + "":\Users""
+$Users = get-childitem -path $path | select-object PSChildName
+
+$Users | %{
+$OutPut = new-object PsCustomObject
+$OutPut | Add-Member -MemberType NoteProperty -Name SerialNumber -Value $SerialNumber -PassThru |
+Add-Member -MemberType NoteProperty -Name Username -Value $_
+return $OutPut
+}
+}
+}
+
+Get-UsersOnDrive -DriveLetters @(""C"") | Export-Csv -Path C:\sample\Test.csv -NoTypeInformation
+</code></pre>"
+"<p>I just updated my Mac OS to Mojave and when I opened up a project I've been working for with a git_hub repository attached. I decided to start a new project with version control. It stated </p>
+
+<blockquote>
+<p>Git was not detected on the system path.</p>
+
+<p>To create projects from git repositories you should install Git and then restart RStudio. </p>
+
+<p>Note that if Git is installed and not on the path, then you can specify it's location using Preference Dialog</p>
+</blockquote>
+
+<p>I noticed that the current project which I have been using version control on no longer has the tab to push updates. </p>
+
+<p>In project settings it states</p>
+
+<p>Version Control System: {(NONE)} </p>
+
+<p>and does not allow any options to change to git. Git is uploaded on my computer, I have restarted r, but I still cannot figure out how to reattach my repository to the project nor attach my new repository to a new project. </p>
+
+<p>Any suggestions for somebody newly learning R</p>
+"
+"<p>I have an object array like</p>
+
+<pre><code>array[0] = {id: 1, name: ""First""}
+array[1] = {id: 2, name: ""Second""}
+</code></pre>
+
+<p>Which I've tried to sort by <code>name</code> field by using:</p>
+
+<pre><code>Array.prototype.alphanumSort = function (caseInsensitive) {
+for (var z = 0, t; t = ((typeof this[z] == ""string"" || typeof this[z] == ""undefined"") ? this[z] : this[z].name); z++) {
+this[z] = new Array();
+var x = 0, y = -1, n = 0, i, j;
+
+while (i = (j = t.charAt(x++)).charCodeAt(0)) {
+var m = (i == 46 || (i &gt;= 48 &amp;&amp; i &lt;= 57));
+if (m !== n) {
+this[z][++y] = """";
+n = m;
+}
+this[z][y] += j;
+}
+}
+
+this.sort(function (a, b) {
+for (var x = 0, aa, bb; (aa = a[x]) &amp;&amp; (bb = b[x]); x++) {
+if (caseInsensitive) {
+aa = aa.toLowerCase();
+bb = bb.toLowerCase();
+}
+if (aa !== bb) {
+var c = Number(aa), d = Number(bb);
+if (c == aa &amp;&amp; d == bb) {
+return c - d;
+} else return (aa &gt; bb) ? 1 : -1;
+}
+}
+return a.length - b.length;
+});
+
+for (var z = 0; z &lt; this.length; z++)
+this[z] = this[z].join("""");
+}
+</code></pre>
+
+<p>but the list that I'm getting back from it contains an array with just the <code>name</code> field from it, without the corresponding <code>id</code>. Why is this happening?
+Is there a way to apply this algorithm to filter objects?
+I'm new in JavaScript, so please be gentle.</p>"

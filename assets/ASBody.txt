@@ -1,0 +1,667 @@
+"<p>As refer in this <a href=""https://stackoverflow.com/questions/38492827/how-to-get-a-string-list-from-firebase-to-fill-a-spinner"">link</a>. I want to try in my coding apps. But it didnt retrieve any data from my firebase database. I just cant figure out how to fix it. Can someone please help me. Is there any idea, where did I miss?</p>
+
+<p>My firebase database as show image below:-</p>
+
+<p><a href=""https://i.stack.imgur.com/58WNd.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/58WNd.png"" alt=""enter image description here""></a></p>
+
+<p>Spinner coding:-</p>
+
+<pre><code>mDatabase = FirebaseDatabase.getInstance().getReference();
+mDatabase.keepSynced(true);
+
+mDatabase.child(""Advertisement"").child(mAuth.getUid()).addValueEventListener(new ValueEventListener()
+{
+@Override
+public void onDataChange(DataSnapshot dataSnapshot)
+{
+//final List&lt;String&gt; name = new ArrayList&lt;String&gt;();
+ArrayList&lt;String&gt; identity = new ArrayList&lt;&gt;();
+identity.add(0, ""Choose Tuition Centre"");
+
+for (DataSnapshot nameSnapshot: dataSnapshot.getChildren())
+{
+String tuitionName = nameSnapshot.child(""adstuitioname"").getValue(String.class);
+identity.add(tuitionName);
+}
+
+ArrayAdapter&lt;String&gt; nameAdapter = new ArrayAdapter&lt;String&gt;(RatingActivity.this, android.R.layout.simple_spinner_item, identity);
+nameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+mName.setAdapter(nameAdapter);
+}
+
+
+@Override
+public void onCancelled(DatabaseError databaseError) {
+
+}
+});
+
+mName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+{
+@Override
+public void onItemSelected(AdapterView&lt;?&gt; parent, View view, int position, long id)
+{
+if(position==0)
+{
+//Toast.makeText(getApplicationContext(),""No Item Selected"",Toast.LENGTH_LONG).show();
+}
+
+else
+{
+Toast.makeText(getApplicationContext(),parent.getItemAtPosition(position) +"" Selected"",Toast.LENGTH_SHORT).show();
+}
+}
+
+@Override
+public void onNothingSelected(AdapterView&lt;?&gt; parent)
+{
+// TODO Auto-generated method stub
+}
+});
+</code></pre>"
+"<pre><code> import mysql.connector as conn
+
+mydb = conn.connect(
+host=""localhost"",
+user=""root"",
+passwd=""password"",
+database=""python_mysql""
+)
+
+mycursor = mydb.cursor()
+</code></pre>
+
+<blockquote>
+<h1>To count the number of tables in database ""python_mysql""</h1>
+
+<pre><code> mycursor.execute(""SELECT FOUND_ROWS();"") #This contains 3 as result
+</code></pre>
+
+<p>How to print the result as 3 by taking it in a new variable</p>
+</blockquote>"
+"<p>I am working on a simple message queue where I am creating separate thread for new connection. I want to know which variables are accessible and can be modified by multiple threads.</p>
+
+<pre><code>class RequestHandler implements Runnable {
+
+Socket socket;
+
+protected RequestHandler(Socket socket) {
+this.socket = socket;
+}
+
+public void run() { ..........
+</code></pre>
+
+<p>In above code is socket can be accessed by multiple threads, if yes then how do I protect it.</p>
+
+<p>Complete code is available at. <a href=""https://github.com/nakshay/JQueue"" rel=""nofollow noreferrer"">https://github.com/nakshay/JQueue</a></p>
+
+<p>I am new to multithreading, please modify question if requried. </p>
+"
+"<p>I have created a basic code wherein it will create an Outlook Appointment via VBA excel UserForm. My Problem, however, is that I am at lost on how to set the 'Start' based on the values of TextBox10 and Textbox11 since it does not accept both values of the textboxes together.</p>
+
+<pre><code> Dim oAppt As AppointmentItem
+
+Candidate = TextBox2.Value + "" "" + TextBox1.Value
+InitialDate = TextBox10.Value
+InitialTime = TextBox11.Value
+
+Set oAppt = Outlook.Application.CreateItem(olAppointmentItem)
+
+oAppt.Subject = Candidate
+oAppt.Start = TextBox10.Value + TextBox11.Value
+oAppt.Start = IntialTime
+oAppt.Recipients.Add (""Email@gmail.com"")
+oAppt.Save
+Candidate = Sheets(""Client Lineup List"").Range(""F"" &amp; lMaxRows + 1).Value
+</code></pre>"
+"<p>I am designing my login page. I have added button background color, which is showing on chrome and firefox perfectly, but it does not showing on microsoft edge. Below are my HTML and CSS,
+note - I have tried with many color, all are working on chrome and firefox but not in edge</p>
+
+<p>HTML</p>
+
+<p><div class=""snippet"" data-lang=""js"" data-hide=""false"" data-console=""true"" data-babel=""false"">
+<div class=""snippet-code"">
+<pre class=""snippet-code-css lang-css prettyprint-override""><code> .index-un-right-nav-buttom{
+float: left;
+
+height: auto;
+
+padding-top: 10px;
+
+padding-bottom: 10px;
+
+width: 100%;
+
+}
+
+.index-un-right-nav-submit-button{
+
+float: left;
+
+padding-top: 5px;
+
+padding-bottom: 5px;
+
+height: 50px;
+
+width: 100px;
+
+margin-top: 20px;
+
+margin-bottom: 20px;
+
+margin-left: 10%;
+
+border: none;
+
+outline: none;
+
+color: #ffffff;
+
+background-color: #007182fb;
+
+font-family: Arial, Helvetica, sans-serif;
+
+font-size: 18px;
+
+border-radius: 50px;
+
+}</code></pre>
+
+<pre class=""snippet-code-html lang-html prettyprint-override""><code>&lt;span class=""index-un-right-nav-button""&gt;
+&lt;button class=""index-un-right-nav-submit-button""&gt;Login&lt;/button&gt;
+
+&lt;/span&gt;
+
+</code></pre>
+
+</div>
+</div>
+</p>
+
+<p>In firefox,
+<a href=""https://i.stack.imgur.com/o6RIS.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/o6RIS.png"" alt=""image in firefox""></a></p>
+
+<p>In Edge
+<a href=""https://i.stack.imgur.com/Rw61B.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/Rw61B.png"" alt=""in edge""></a></p>
+
+<p>In chrome,
+<a href=""https://i.stack.imgur.com/C3a1P.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/C3a1P.png"" alt=""in chrome""></a></p>"
+"<p>I am using live data with ViewModel.</p>
+
+<p>I have a scenario where I have two fragments and One Activity.
+Fragment A and Fragment B.</p>
+
+<p>From Activity, I have launched Fragment A (its shows list of names i.e fetch from backend) and when I tap on Name its displays Fragment B(that's is back stack).</p>
+
+<p>Now from Fragment B if I press the back button, it returns to fragment A, it shows a blank screen as I have implemented ViewModel in the onCreate method of fragment A.</p>
+
+<p>But if I have implemented the ViewModel in the oncreateView method of fragment A, it will keep on adding observers as the fragment is not destroyed. </p>
+"
+"<p>I want to display the decimal precision along with the result for decimal datatype in hive. However if there is no fraction part , in hive it will not display the decimal points.</p>
+
+<pre><code>hive&gt; select cast(11 as decimal(14,2));
+11
+
+hive&gt; select cast(11.22 as decimal(14,2));
+11.22
+</code></pre>
+
+<p>In the above example instead of 11 it should display 11.00.How to achieve this?
+Please help.</p>"
+"<p>Scenario: -There are 2 sheets being compared. Range for Sheet1 is B2:B and for Sheet2 is C2:C. </p>
+
+<p>Requirement: </p>
+
+<ul>
+<li>Sheet1 B2 = Sheet2 C2</li>
+<li>Sheet1 B3 = Sheet2 C3 and so on...</li>
+</ul>
+
+<p>See my existing code below:</p>
+
+<pre><code>Sub MessageCode()
+
+Dim FoundBlank1 As Range
+Dim ws As Worksheet: Set ws = ThisWorkbook.Sheets(""Sheet1"")
+Dim ws2 As Worksheet: Set ws2 = ThisWorkbook.Sheets(""Sheet2"")
+Dim MyRange As Range, MyCell As Range, MyRange2 As Range, MyCell2 As Range
+
+Set MyRange = ws.Range(""B2:B"" &amp; ws.Range(""B"" &amp; ws.Rows.Count).End(xlUp).Row)
+Set MyRange2 = ws2.Range(""C2:C"" &amp; ws2.Range(""C"" &amp; ws2.Rows.Count).End(xlUp).Row)
+Set MyCell2 = MyRange2
+
+
+For Each MyCell In MyRange
+
+If MyCell.Value &lt;&gt; Worksheets(""Sheet2"").Range(""C2"").Value Then
+
+MyCell.Copy
+Worksheets(""Sheet3"").Select
+Set FoundBlank1 = Range(""A1:A1000"").Find(What:="""", lookat:=xlWhole)
+FoundBlank1.Select
+Selection.PasteSpecial xlPasteValues
+
+ActiveCell.Offset(0, 1).Value = ""Incorrect Value.""
+
+End If
+
+Next MyCell
+
+End Sub
+</code></pre>"
+"<p>I have a problem in my project. I want to auto click my textarea automatically after user add youtube video through iframe. But dont know how to acieve this.</p>
+
+<p>Here is what I am trying</p>
+
+<pre><code>document.getElementById('youtube_select').onclick = function () {
+var youtube = jQuery('input[name=youtube]:checked').val();
+if(youtube) {
+if(typeof(clickedElement) != ""undefined""){
+clickedElement.after('&lt;iframe style=""width: 95%;height: 400px;"" src=""https://www.youtube.com/embed/' + youtube + '"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen&gt;&lt;/iframe&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;');
+} else {
+jQuery('.medium-editor-element').append('&lt;iframe style=""width: 95%;height: 400px;"" src=""https://www.youtube.com/embed/' + youtube + '"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen&gt;&lt;/iframe&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;');
+}
+
+jQuery(""#textarea"").focus();
+}
+}
+</code></pre>
+
+<p>and here is the element that is added in my textarea</p>
+
+<pre><code>&lt;div class=""col-xs-12""&gt;
+&lt;div class=""textarea-field editor""&gt;
+&lt;div class=""form-control textarea medium-editor-element"" id=""medium-editor-1538377761979"" onkeyup=""auto_grow(this)"" placeholder=""Start writing"" name=""content"" cols=""50"" rows=""10"" medium-editor-textarea-id=""medium-editor-1538377761979"" contenteditable=""true"" spellcheck=""true"" data-medium-editor-element=""true"" role=""textbox"" aria-multiline=""true"" data-medium-editor-editor-index=""1"" medium-editor-index=""b41ef202-8466-bd3b-2659-be0c9528b8ef"" data-placeholder=""Type your text"" style=""height: 84px;"" data-medium-focused=""true""&gt;&lt;p&gt;uiiuiuiu&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;iframe style=""width: 95%;height: 400px;"" src=""https://www.youtube.com/embed/EU7PRmCpx-0"" frameborder=""0"" allow=""autoplay; encrypted-media"" allowfullscreen=""""&gt;&lt;/iframe&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;textarea class=""form-control textarea medium-editor-hidden"" id=""textarea"" onkeyup=""auto_grow(this)"" placeholder=""Start writing"" name=""content"" cols=""50"" rows=""10"" medium-editor-textarea-id=""medium-editor-1538377761979"" style=""height: 0px;""&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+&lt;div class=""toolbox active""&gt;
+&lt;a href=""#"" id=""quick-add""&gt;&lt;img src=""http://192.168.1.122/bemediav2/public/img/frontend/plus.png"" alt=""""&gt;&lt;/a&gt;
+&lt;div class=""toolbox-option""&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a id=""quick-close"" href=""#""&gt;&lt;img src=""http://192.168.1.122/bemediav2/public/img/frontend/tool-close.png"" alt=""""&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=""javascript:void(0)"" id=""uploadimage""&gt;&lt;img src=""http://192.168.1.122/bemediav2/public/img/frontend/tool-img.png"" alt=""""&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a data-toggle=""modal"" data-target=""#upload_Media"" href=""javascript:void(0)""&gt;&lt;img src=""http://192.168.1.122/bemediav2/public/img/frontend/tool-video.png"" alt=""""&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=""javascript:void(0)"" data-toggle=""modal"" data-target=""#uploadlink""&gt;&lt;img src=""http://192.168.1.122/bemediav2/public/img/frontend/tool-link.png"" alt=""""&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=""#""&gt;&lt;img src=""http://192.168.1.122/bemediav2/public/img/frontend/tool-audio.png"" alt=""""&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=""#""&gt;&lt;img src=""http://192.168.1.122/bemediav2/public/img/frontend/tool-add.png"" alt=""""&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>the youtube_select id is here. It is in the modal. The modal is clicked when I click on the upload_Media</p>
+
+<pre><code>&lt;div class=""modal fade modal-vcenter"" tabindex=""-1"" role=""dialog"" id=""upload_Media""&gt;
+&lt;div class=""modal-dialog"" role=""document""&gt;
+&lt;div class=""modal-content""&gt;
+&lt;div class=""modal-header""&gt;
+&lt;h3&gt;{{ __('sidebar.searchyoutube') }}&lt;/h3&gt;
+&lt;a href=""#"" class=""modall-close"" data-dismiss=""modal""&gt;&lt;img src=""{{ URL::to('/') }}/img/frontend/close-icon.png"" alt=""""&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class=""modal-body""&gt;
+&lt;div class=""row""&gt;
+&lt;div class=""col-xs-12""&gt;
+&lt;div class=""searchbox_wrapper""&gt;
+{!! Form::open(['method'=&gt;'POST', 'id'=&gt;'youtubesearch']) !!}
+&lt;div class=""search_block""&gt;
+&lt;input type=""text"" class=""form-control"" id=""search"" name=""search"" placeholder=""{{ __('sidebar.searchyoutube') }}""&gt;
+&lt;input type=""button"" class=""post_submit3"" onclick=""youtubesearch();""&gt;
+&lt;/div&gt;&lt;!-- search_block--&gt;
+{!! Form::close() !!}
+&lt;/div&gt;
+&lt;div class=""image_container""&gt;
+&lt;div class=""tab_row""&gt;
+&lt;div class=""scroll_section scroll_block""&gt;
+&lt;div class=""row""&gt;
+&lt;div class=""image_list""&gt;
+&lt;ul class=""youtube_search""&gt;&lt;/ul&gt;
+&lt;/div&gt;&lt;!-- image_list--&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;!-- scroll_section--&gt;
+&lt;div class=""bottom_shape""&gt;&lt;/div&gt;
+&lt;/div&gt; &lt;!-- tab_row--&gt;
+&lt;/div&gt;&lt;!-- search_block--&gt;
+&lt;div class=""media_bottom""&gt;
+&lt;input type=""button"" class=""submit_select"" id=""youtube_select"" value=""{{ __('sidebar.use') }}"" data-dismiss=""modal""&gt;
+&lt;a href=""#"" class=""cancel_btn2"" data-dismiss=""modal""&gt;{{ __('sidebar.cancel') }}&lt;/a&gt;
+&lt;/div&gt;&lt;!-- media_bottom--&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>I have been selected my youtube video from here</p>
+
+<pre><code>@foreach($youtubes-&gt;items as $youtube)
+&lt;li class=""image_height""&gt;
+&lt;input type=""radio"" name=""youtube"" value=""{{ $youtube-&gt;id-&gt;videoId }}"" id=""{{ $loop-&gt;iteration }}"" /&gt;
+&lt;label class=""checkbox_common"" for=""{{ $loop-&gt;iteration }}""&gt;&lt;img src=""{{ $youtube-&gt;snippet-&gt;thumbnails-&gt;default-&gt;url }}"" alt=""""/&gt;&lt;/label&gt;
+&lt;label class=""check_tick""&gt;&lt;img src=""{{ URL::to('/') }}/img/frontend/check-tick.svg"" alt=""""/&gt;&lt;/label&gt;
+&lt;/li&gt;
+@endforeach
+</code></pre>
+
+<p>And my controller for getting the video is</p>
+
+<pre><code>public function youtubesearch(Request $request) {
+
+$developer_key = 'myKey';
+$youtubes = [];
+if ($request-&gt;get('search')) {
+$format_keyword = implode(""+"", explode("" "", $request-&gt;get('search')));
+
+$url = ""https://www.googleapis.com/youtube/v3/search?q=$format_keyword&amp;order=viewCount&amp;part=snippet&amp;type=video&amp;maxResults=32&amp;key="" . $developer_key;
+
+$arr_result = json_decode(file_get_contents($url));
+if (isset($arr_result-&gt;items) &amp;&amp; !empty($arr_result-&gt;items)) {
+$youtubes = $arr_result;
+}
+}
+
+$view = View::make('frontend.include.youtube', compact('youtubes'));
+$html = $view-&gt;render();
+$response = array('html' =&gt; $html);
+return response()-&gt;json($response);
+}
+</code></pre>"
+"<p>I have angular 6 project. And I was using ngModel and formControlName together. But angular gave me warning in below. Forexamle when I open update popup from button in grid, I can easily bind inputs in update popup automatically. But angular 7 says that remove ngModel. So, I must always map everything to my student object. What is the best way for this? Can we give formValueType to form value like studentObject in below code and then can it bind automatically?</p>
+
+<p>Angular warning: </p>
+
+<pre><code> It looks like you're using ngModel on the same form field
+as formControlName. Support for using the ngModel input property and
+ngModelChange event with reactive form directives has been deprecated
+in Angular v6 and will be removed in Angular v7.
+</code></pre>
+
+<p>myHtml</p>
+
+<pre><code>&lt;form [formGroup]=""studentForm"" ??????formValueType=""studentObject""?????&gt;
+&lt;p-dialog&gt;
+&lt;div class=""ui-g-12 form-group""&gt;
+&lt;div class=""ui-g-4""&gt;
+&lt;label&gt;Name Surname&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class=""ui-g-8""&gt;
+&lt;input pInputText [(ngModel)]=""selectedStudent.nameSurname"" formControlName=""nameSurname"" /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=""ui-g-12 form-group""&gt;
+&lt;div class=""ui-g-4""&gt;
+&lt;label&gt;Email&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class=""ui-g-8""&gt;
+&lt;input pInputText [(ngModel)]=""selectedStudent.email"" formControlName=""email"" /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=""ui-g-12 form-group""&gt;
+&lt;div class=""ui-g-4""&gt;
+&lt;label&gt;Age&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class=""ui-g-8""&gt;
+&lt;input pInputText [(ngModel)]=""selectedStudent.age"" formControlName=""age"" /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;button type=""button"" pButton icon=""fa fa-check"" (click)=""save()"" label=""Save""&gt;&lt;/button&gt;
+&lt;/p-dialog&gt;
+&lt;/form&gt;
+</code></pre>"
+"<p>for example, i have some string </p>
+
+<pre><code>var a = '2,,2,';
+var b = ',,,'
+</code></pre>
+
+<p>how to get only first character, </p>
+
+<p>so i will get</p>
+
+<pre><code>a = '2'
+b = ','
+</code></pre>"
+"<p>How to automate semantic <code>UI dropdown</code> in selenium using Java.</p>
+
+<p>It is not working with this code:</p>
+
+<pre><code>Select drpdwn1 = new Select(driver.findElement(By.cssSelector(""#ddIssue"")));
+int sel1Size = drpdwn1.getOptions().size();
+for (int i = 0; i &lt; sel1Size; i++) {
+drpdwn1 = new Select(driver.findElement(By.cssSelector(""#ddIssue"")));
+drpdwn1.selectByIndex(i);
+driver.findElement(By.xpath(""//*[@id=\""ticketMessage\""]"")).sendKeys("" test"");
+}
+</code></pre>
+
+<p>The DOM HTML code is-</p>
+
+<pre><code>&lt;div class=""ui fluid dropdown search selection active visible""&gt;
+&lt;select id=""ddIssue"" name=""IssueTypeId""&gt;
+&lt;option value=""""&gt;SelectIssueType&lt;/option&gt;
+&lt;option value=""12""&gt;test isssue type&lt;/option&gt;
+&lt;option value=""13""&gt;Test&lt;/option&gt;
+&lt;option value=""14""&gt;tester&lt;/option&gt;
+&lt;/select&gt;
+&lt;i class=""dropdown icon""&gt;&lt;/i&gt;
+&lt;input class=""search"" autocomplete=""off"" tabindex=""0""&gt;
+&lt;div class=""default text""&gt;SelectIssueType&lt;/div&gt;
+&lt;div class=""menu transition visible"" tabindex=""-1"" style=""display: block !important;""&gt;
+&lt;div class=""item"" data-value=""12""&gt;test isssue type&lt;/div&gt;
+&lt;div class=""item"" data-value=""13""&gt;Test&lt;/div&gt;
+&lt;div class=""item"" data-value=""14""&gt;tester&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>"
+"<p>I have an XML as shown below.</p>
+
+<pre><code>&lt;?xml version=""1.0"" encoding=""utf-8""?&gt;
+&lt;RoleManagement xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema""&gt;
+&lt;Permissions&gt;
+&lt;Group Name=""Test Case Management""&gt;
+&lt;Permission ID=""1"" Name=""Add/Edit/Delete test cases"" /&gt;
+&lt;Permission ID=""2"" Name=""Assign Test cases to users"" /&gt;
+&lt;/Group&gt;
+&lt;Group Name=""Bug Management""&gt;
+&lt;Permission ID=""9"" Name=""Add/Edit/Delete bugs"" /&gt;
+&lt;Permission ID=""13"" Name=""View bugs"" /&gt;
+&lt;/Group&gt;
+&lt;Group Name=""Administration""&gt;
+&lt;Permission ID=""19"" Name=""Database backup"" /&gt;
+&lt;Permission ID=""20"" Name=""Role Management"" /&gt;
+&lt;/Group&gt;
+&lt;/Permissions&gt;
+&lt;RolePermissions&gt;
+&lt;RolePermission RedmineId=""8"" PermissionID=""9"" /&gt;
+&lt;RolePermission RedmineId=""8"" PermissionID=""13"" /&gt;
+&lt;/RolePermissions&gt;
+&lt;Roles&gt;
+&lt;Role Name=""Manager"" RedmineId=""8"" TestlinkId=""15"" /&gt;
+&lt;/Roles&gt;
+&lt;/RoleManagement&gt;
+</code></pre>
+
+<p>I need to load the data from xml to C# classes using <code>XmlSerializer</code>.</p>
+
+<p><strong>What I have done so Far</strong> </p>
+
+<hr>
+
+<p>I have created these classes.</p>
+
+<pre><code> [Serializable()]
+[System.Xml.Serialization.XmlType(AnonymousType = true)]
+[System.Xml.Serialization.XmlRoot(Namespace = """", IsNullable = false)]
+public partial class RoleManagement
+{
+private List&lt;Group&gt; permissionGroupsField;
+private List&lt;RolePermission&gt; rolePermissionsField;
+private List&lt;Role&gt; rolesField;
+[System.Xml.Serialization.XmlArrayItem(""Group"", IsNullable = false)]
+public List&lt;Group&gt; PermissionGroups
+{
+get { return this.permissionGroupsField; }
+set { this.permissionGroupsField = value; }
+}
+[System.Xml.Serialization.XmlArrayItem(""RolePermission"", IsNullable = false)]
+public List&lt;RolePermission&gt; RolePermissions
+{
+get { return this.rolePermissionsField; }
+set { this.rolePermissionsField = value; }
+}
+[System.Xml.Serialization.XmlArrayItem(""Role"", IsNullable = false)]
+public List&lt;Role&gt; Roles
+{
+get { return this.rolesField; }
+set { this.rolesField = value; }
+}
+}
+
+[Serializable()]
+[System.Xml.Serialization.XmlType(AnonymousType = true)]
+public partial class Group
+{
+private List&lt;Permission&gt; permissionsField;
+private string nameField;
+[System.Xml.Serialization.XmlElement(""Permission"")]
+public List&lt;Permission&gt; Permissions
+{
+get { return this.permissionsField; }
+set { this.permissionsField = value; }
+}
+[System.Xml.Serialization.XmlAttribute(""Name"")]
+public string GroupName
+{
+get { return this.nameField; }
+set { this.nameField = value; }
+}
+}
+
+[Serializable()]
+[System.Xml.Serialization.XmlType(AnonymousType = true)]
+public partial class Permission
+{
+private int idField;
+private string nameField;
+[System.Xml.Serialization.XmlAttribute()]
+public int ID
+{
+get { return this.idField; }
+set { this.idField = value; }
+}
+[System.Xml.Serialization.XmlAttribute()]
+public string Name
+{
+get { return this.nameField; }
+set { this.nameField = value; }
+}
+}
+
+[Serializable()]
+[System.Xml.Serialization.XmlType(AnonymousType = true)]
+public partial class RolePermission
+{
+private int redmineIdField;
+private int permissionIDField;
+[System.Xml.Serialization.XmlAttribute()]
+public int RedmineId
+{
+get { return this.redmineIdField; }
+set { this.redmineIdField = value; }
+}
+[System.Xml.Serialization.XmlAttribute()]
+public int PermissionID
+{
+get { return this.permissionIDField; }
+set { this.permissionIDField = value; }
+}
+}
+
+[System.Xml.Serialization.XmlType(AnonymousType = true)]
+public partial class Role
+{
+private string nameField;
+private int redmineIdField;
+private int testlinkIdField;
+[System.Xml.Serialization.XmlAttribute()]
+public string Name
+{
+get { return this.nameField; }
+set { this.nameField = value; }
+}
+[System.Xml.Serialization.XmlAttribute()]
+public int RedmineId
+{
+get { return this.redmineIdField; }
+set { this.redmineIdField = value; }
+}
+[System.Xml.Serialization.XmlAttribute()]
+public int TestlinkId
+{
+get { return this.testlinkIdField; }
+set { this.testlinkIdField = value; }
+}
+}
+</code></pre>
+
+<p><strong>My Problem</strong></p>
+
+<hr>
+
+<p>Data is correctly loaded for <code>&lt;RolePermissions&gt;</code> node and <code>&lt;Roles&gt;</code> node. But data for <code>&lt;Permissions&gt;</code> node are not loading at all. Its always null.</p>
+
+<p>Is there anything else i need to add to get data from list inside another list?</p>
+
+<p>Is there anything I miss? </p>"
+"<p>Consider the following 2D array:</p>
+
+<pre><code>let array = [
+[11, 2, 4],
+[4, 5, 6],
+[10, 8, -12]
+]
+</code></pre>
+
+<p>What I want to get is the summation of the diagonals:</p>
+
+<ul>
+<li>As <code>firstDiagnal</code>: 11 + 5 + (-12) = 4</li>
+<li>As <code>secondDiagnal</code>: 4 + 5 + 10 = 19</li>
+</ul>
+
+<p>I could achieve it using a standard <code>for-in</code> loop:</p>
+
+<pre><code>var firstDiagnal = 0
+var secondDiagnal = 0
+
+for i in 0..&lt;array.count {
+firstDiagnal += array[i][i]
+secondDiagnal += array[i][array[i].count - 1 - i]
+}
+
+print(firstDiagnal)
+print(secondDiagnal)
+</code></pre>
+
+<p>However, what could it be if we tried to use <em>higher-order</em> functions? such as <code>map</code> and <code>reduce</code>?</p>"
+"<p>I'm looking for a php function that would set array's elements as independent variables (by the same name)</p>
+
+<p>I wrote the code below that should do the trick...
+Is there any function that does that already, in php ?</p>
+
+<pre><code>$data = array(...);
+
+foreach ($data as $key =&gt; $value) {
+${$key} = $value;
+}
+</code></pre>
+"
+"<p><strong>How to use input type file in angular material</strong></p>
+
+<p>Hi, I am using angular material for designing. when i go on angular material site there no input type file element. anyone know about this.</p>
+"

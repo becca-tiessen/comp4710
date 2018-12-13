@@ -1,0 +1,1050 @@
+"<p>I'm starting a test project on VS 2017 for a new module of an old software. I'm new to TDD and unit test so I wonder if this is the correct way to do this...</p>
+
+<p>I started by testing how objects are added to the lists of the viewmodel class :</p>
+
+<pre><code>[TestClass]
+public class RTCM_Config_Test
+{
+static RTCM_Bouton input = new RTCM_Bouton();
+static RTCM_Sortie output = new RTCM_Sortie();
+
+[TestMethod]
+public void CreateConfig()
+{
+//Arrange
+//Act
+RTCM_Config conf = new RTCM_Config();
+//Assert
+Assert.IsNotNull(conf);
+}
+
+[TestMethod]
+public void AddNewInputInConfig()
+{
+//Arrange
+RTCM_Config conf = new RTCM_Config();
+//Act
+bool isOk = conf.CreateElements(input);
+//Assert
+Assert.IsTrue(isOk);
+}
+
+[TestMethod]
+public void AddNewOutputInConfig()
+{
+//Arrange
+RTCM_Config conf = new RTCM_Config();
+//Act
+bool isOk = conf.CreateElements(output);
+//Assert
+Assert.IsTrue(isOk);
+}
+
+}
+</code></pre>
+
+<p>And the CreateElements functions in the view model :</p>
+
+<pre><code> public bool CreateElements(RTCM_Bouton btn)
+{
+if (listButtonsInput == null) return false;
+
+if (btn == null) return false;
+
+if (listButtonsInput.Count &gt;= 10) return false;
+
+return true;
+
+}
+
+public bool CreateElements(RTCM_Sortie sortie)
+{
+if (listButtonsOutput == null) return false;
+
+if (sortie == null) return false;
+
+if (listButtonsOutput.Count &gt;= 10) return false;
+
+return true;
+}
+</code></pre>
+
+<p>Before test methods, I declare static input and output objects as test parameters, is it the good way to do ? Or should I declare test object in each test method ?</p>
+
+<p>Thank you !</p>"
+"<p>My teacher challenged me of finding a way to count the occurences of the word ""bob"" in any random string variable without <code>str.count()</code>. So I did,</p>
+
+<pre><code>a = ""dfjgnsdfgnbobobeob bob""
+compteurDeBob = 0
+for i in range (len(a) - 1):
+if a[i] == ""b"":
+if a[i+1] == ""o"":
+if a[i+2] == ""b"":
+compteurDeBob += 1
+print(compteurDeBob)
+</code></pre>
+
+<p>but I wanted to find a way to do that with a word of any length as shown below, but I have no clue on how to do that... </p>
+
+<pre><code>a = input(""random string: "")
+word = input(""Wanted word: "")
+compteurDeBob = 0
+for i in range (len(a)-1):
+
+#... i don't know...
+
+print(compteurDeBob)
+</code></pre>"
+"<p>In my app I create some threads (ok a lot maybe, but there are never more than 10 active at the same time and they're not doing big work), and at the end of their executions (i join them all before i continue), since they are doing work in a loop, they will do that some number of time, but even tho they are all finished (joined) when I check their names the Thread-XXX is never reset so I wondered if it's normal, I initially thought that when a thread terminated it would decrement the XXX number, but this would add something maybe not that useful to do.</p>
+
+<p>I've searched through javadoc but all I found was this statement:</p>
+
+<blockquote>
+<p>Every thread has a name for identification purposes. More than one thread may have the same name. If a name is not specified when a thread is created, a new name is generated for it.</p>
+</blockquote>
+
+<p>So does someone know if it's normal that after Threads 1 to 10 end the following will be named 11 and +?</p>
+
+<p>Thanks in advance!</p>
+
+<p>EDIT: also it's weird every time I write my question then I write Hello at the start but it's erased for some reason I can't add a line before the first one.</p>"
+"<p>I'm using @angular/fire, and I had just snapshotChanges() for the database, now I tried to subscribe to it to stay always updated.</p>
+
+<p><div class=""snippet"" data-lang=""js"" data-hide=""false"" data-console=""true"" data-babel=""false"">
+
+<div class=""snippet-code"">
+
+<pre class=""snippet-code-html lang-html prettyprint-override""><code> return this.db.list&lt;Plan&gt;(this.BASE_PATH).snapshotChanges().subscribe(
+
+item =&gt; {
+
+return item.map(a =&gt; {
+
+var p = new Plan;
+
+p.key = a.payload.key;
+
+p.name = a.payload.child(this.NAME).val();
+
+p.descripton = a.payload.child(this.DESCRIPTON).val();
+
+p.isPublic = a.payload.child(this.ISPUBLIC).val() == 'false' ? false : true;
+
+
+
+return p;
+
+})
+
+}
+
+);</code></pre>
+
+</div>
+
+</div>
+
+</p>
+
+<p>but this does end up in problems with the <code>async</code> pipe and gives me an error:</p>
+
+<p><div class=""snippet"" data-lang=""js"" data-hide=""false"" data-console=""true"" data-babel=""false"">
+
+<div class=""snippet-code"">
+
+<pre class=""snippet-code-html lang-html prettyprint-override""><code>ERROR Error: InvalidPipeArgument: '[object Object]' for pipe 'AsyncPipe'
+
+at invalidPipeArgumentError (common.js:3981)
+
+at </code></pre>
+
+</div>
+
+</div>
+
+</p>
+
+<p>the error is actually longer but just to show you.</p>
+
+<p>Maybe you have any ideas</p>"
+"<p>I have a simple story app and the reader chooses if they are male or female at the start. I have a radio group with boy and girl. </p>
+
+<p>I then want to take this info and use it so that the correct gender wording is displayed. him and her. </p>
+
+<p>I have used this code </p>
+
+<pre><code>public void onRadioButtonClicked(View view) {
+int radioButtonId = rg.getCheckedRadioButtonId();
+rb = findViewById(radioButtonId);
+
+if (rb.getText().equals(""boy"")) {
+gender = 1;
+} else {
+gender = 2;
+}
+}
+</code></pre>
+
+<p>so that if boy is chosen the int gender = 1 or else gender = 2.</p>
+
+<p>when a button is pressed for someone to 'talk' it then looks if gender ==1 it will display him or else it will use her.</p>
+
+<p>My problem is that the gender is always ==2. I have used Log.i to check this and I can ever seem to get gender to be 1. even though the boy radiobutton is clicked.</p>
+
+<p>Please could anyone offer any help.</p>
+
+<p>Thanks</p>"
+"<p>I want to change my JavaScript:</p>
+
+<p><div class=""snippet"" data-lang=""js"" data-hide=""false"" data-console=""true"" data-babel=""false"">
+
+<div class=""snippet-code"">
+
+<pre class=""snippet-code-js lang-js prettyprint-override""><code>function SwapDivsWithClick(div1,div2,div3)
+
+{
+
+d1 = document.getElementById(div1);
+
+d2 = document.getElementById(div2);
+
+d3 = document.getElementById(div3);
+
+if( d2.style.display &amp; d3.style.display == ""none"" )
+
+{
+
+d1.style.display = ""none"";
+
+d2.style.display = ""block"";
+
+d3.style.display = ""none"";
+
+}
+
+else
+
+{
+
+d1.style.display = ""block"";
+
+d2.style.display = ""none"";
+
+d3.style.display = ""none"";
+
+}
+
+else
+
+{
+
+d1.style.display = ""none"";
+
+d2.style.display = ""none"";
+
+d3.style.display = ""block"";
+
+}
+
+}</code></pre>
+
+<pre class=""snippet-code-html lang-html prettyprint-override""><code>&lt;p style=""text-align:center; font-weight:bold; font-style:italic;""&gt;
+
+&lt;a href=""javascript:SwapDivsWithClick('swapper-first','swapper-other', 'swapper-3')""&gt;(Swap Divs)&lt;/a&gt;
+
+&lt;/p&gt;
+
+
+
+
+
+&lt;div id=""swapper-first"" style=""display:block; border:2px dashed red; padding:25px;""&gt;
+
+&lt;p style=""margin:0; color:red;""&gt;
+
+This div displayed when the web page first loaded.
+
+&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;div id=""swapper-other"" style=""display:none; border:2px dotted blue; padding:25px;""&gt;
+
+&lt;p style=""margin:0; color:blue;""&gt;
+
+This div displayed when the link was clicked.
+
+&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;div id=""swapper-3"" style=""display:none; border:2px dotted blue; padding:25px;""&gt;
+
+&lt;p style=""margin:0; color:blue;""&gt;
+
+This div displayed when the link was clicked.
+
+&lt;/p&gt;
+
+&lt;/div&gt;</code></pre>
+
+</div>
+
+</div>
+
+</p>
+
+<p>If I click <code>(Swap divs)</code> nothing happens, but if I delete <code>d3</code> and <code>div3</code> and the <code>else</code> it works.</p>
+
+<p>I'm new to JavaScript as you can see. What am I doing wrong?</p>"
+"<p>i am decoding JSON (Decoder) string from URL repsonse as follows and get a get during the decoding process the following error messages: </p>
+
+<p>Error Message: </p>
+
+<pre><code>typeMismatch(Swift.String, Swift.DecodingError.Context(codingPath: [CodingKeys(stringValue: ""values"", intValue: nil), _JSONKey(stringValue: ""Index 0"", intValue: 0), CodingKeys(stringValue: ""stat-list"", intValue: nil), CodingKeys(stringValue: ""stat"", intValue: nil), _JSONKey(stringValue: ""Index 0"", intValue: 0), CodingKeys(stringValue: ""timestamps"", intValue: nil), _JSONKey(stringValue: ""Index 0"", intValue: 0)], debugDescription: ""Expected to decode String but found a number instead."", underlyingError: nil))
+</code></pre>
+
+<p>Here is my JSON String from response: </p>
+
+<pre><code>{""values"":[{""resourceId"":""AAAAAA-3398-4280-8e32-BBBBBBBB"",""stat-list"":{""stat"":[{""timestamps"":[1534186909854],""statKey"":{""key"":""cpu|underusedpercent""},""data"":[25.0]},{""timestamps"":[1538430850296],""statKey"":{""key"":""mem|consumedPct""},""data"":[99.9984130859375]}]}}]}
+</code></pre>
+
+<p>My suitable struct : </p>
+
+<pre><code>struct VrOpsObjectCpuRAMStatistics: Decodable
+{
+struct Values: Decodable
+{
+let resourceId: String
+struct StatList: Decodable
+{
+struct Stat: Decodable
+{
+let timestamps: [String]
+struct StatKey: Decodable
+{
+let key: String
+}
+let statKey: StatKey
+let data: [String]
+}
+let stat: [Stat]
+}
+let statList: StatList
+private enum CodingKeys: String, CodingKey
+{
+case resourceId
+case statList = ""stat-list""
+}
+}
+let values: [Values]
+}
+</code></pre>
+
+<p>My decoding call with JSON decoder:</p>
+
+<pre><code> self.vrOpsObjectCpuRamStatistics = try JSONDecoder().decode(VrOpsObjectCpuRAMStatistics.self , from: jsonData)
+if self.vrOpsObjectCpuRamStatistics != nil
+{
+print(""Data from REST call has been converted sucessfully to JSON Object"" );
+return (true, self.vrOpsObjectCpuRamStatistics);
+}
+else
+{
+return (false, ""Decoding vRops data to JSON object has been failed!"");
+}
+</code></pre>"
+"<p>My goal is to create an Angular <code>Validator</code> to disallow consecutive spaces;</p>
+
+<p>Currently I'm using <code>Validators.pattern('^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$')</code>, which solved the issue. The only problem is, that it also disallows special characters, which I dont want.</p>
+
+<ul>
+<li><code>text text</code> shouldn't be valid because there are multiple consecutive spaces</li>
+<li>the validator should also work if the spaces are at the beginning or the end of the string</li>
+<li><code>text α</code> should not throw an error event though <code>α</code> is a special character</li>
+</ul>"
+"<p>I'm working on a project and I'd like to know if it's possible to determine whether a video is a boomerang video or not. Boomerang videos generally are about 4 seconds long or slightly shorter. </p>
+
+<p>What I've thought about doing so far is filtering the array I receive from the users camera roll to only display videos which are 4 seconds, but is there a better way? </p>
+
+<p>Any pointers or advice will be greatly appreciated.</p>"
+"<p>i have the following example where i retrieve an ID </p>
+
+<pre><code>DECLARE @ScheduleId NVARCHAR (max),@DateTime DATETIME = GETDATE()
+DECLARE @Date VARCHAR(8) = CONVERT(NVARCHAR(8),@DateTime,112)
+SET @ScheduleId = (SELECT TOP 1 sc.ScheduleID
+FROM dbo.Subscriptions s WITH(NOLOCK) inner join dbo.ReportSchedule sc WITH(NOLOCK) on s.SubscriptionID=sc.SubscriptionID
+WHERE LastRunTime&gt;=@Date and LastRunTime&lt; @Date
+</code></pre>
+
+<p>the above gets me a ScheduleID,this works fine. I have a column named COUNT as shown bellow, what i am trying to achieve is that when the schedule ID is returned it must be entered into the table but it must count the number of times it has been entered.
+for example:</p>
+
+<p>if the schedule ID when i run the above query returns <code>@ScheduleID='DREVJHIS-59545GRTHS</code>'
+then it must insert into the table </p>
+
+<pre><code>insert into Table (ScheduleID,Count)
+values(@scheduleID,count // how do i do a count here)
+</code></pre>
+
+<p>Table</p>
+
+<pre><code>ScheduleID | Count
+DREVJHIS-59545GRTHS | 1
+
+//so the 1 would mean that only one time does this specific ID exists in this table
+</code></pre>
+
+<p>if i run the query again and it comes back with the same ID then the count column should be updated as follows</p>
+
+<pre><code>ScheduleID | Count
+DREVJHIS-59545GRTHS | 2 // so here now it shows that 2 times the id has been entered into this table.
+</code></pre>
+
+<p>is there a way to do this?</p>"
+"<p>I've created an RSA Key Pair. Now, I'm trying to encrypt the private key with a DES algorithm, format it to PKCS#5 and print it on the console. Unfortunately, the generated private key does not work. When I try to use it, after entering the <strong>right</strong> passphrase, the ssh client returns the passphrase is not valid:</p>
+
+<blockquote>
+<p>Load key ""test.key"": incorrect passphrase supplied to decrypt private key</p>
+</blockquote>
+
+<p>Could please someone tells me where I'm wrong?</p>
+
+<p>This is the code:</p>
+
+<pre><code>private byte[] iv;
+
+public void generate() throws Exception {
+RSAKeyPairGenerator generator = new RSAKeyPairGenerator();
+generator.initialize(2048);
+KeyPair keyPair = generator.generateKeyPair();
+
+String passphrase = ""passphrase"";
+byte[] encryptedData = encrypt(keyPair.getPrivate().getEncoded(), passphrase);
+System.out.println(getPrivateKeyPem(Base64.encodeBase64String(encryptedData)));
+}
+
+private byte[] encrypt(byte[] data, String passphrase) throws Exception {
+String algorithm = ""PBEWithMD5AndDES"";
+salt = new byte[8];
+int iterations = 1024;
+
+// Create a key from the supplied passphrase.
+KeySpec ks = new PBEKeySpec(passphrase.toCharArray());
+SecretKeyFactory skf = SecretKeyFactory.getInstance(algorithm);
+SecretKey key = skf.generateSecret(ks);
+
+// Create the salt from eight bytes of the digest of P || M.
+MessageDigest md = MessageDigest.getInstance(""MD5"");
+md.update(passphrase.getBytes());
+md.update(data);
+byte[] digest = md.digest();
+System.arraycopy(digest, 0, salt, 0, 8);
+AlgorithmParameterSpec aps = new PBEParameterSpec(salt, iterations);
+
+Cipher cipher = Cipher.getInstance(AlgorithmID.pbeWithSHAAnd3_KeyTripleDES_CBC.getJcaStandardName());
+cipher.init(Cipher.ENCRYPT_MODE, key, aps);
+iv = cipher.getIV();
+byte[] output = cipher.doFinal(data);
+ByteArrayOutputStream out = new ByteArrayOutputStream();
+out.write(salt);
+out.write(output);
+out.close();
+return out.toByteArray();
+}
+
+private String getPrivateKeyPem(String privateKey) throws Exception {
+StringBuffer formatted = new StringBuffer();
+formatted.append(""-----BEGIN RSA PRIVATE KEY----- "" + LINE_SEPARATOR);
+
+formatted.append(""Proc-Type: 4,ENCRYPTED"" + LINE_SEPARATOR);
+formatted.append(""DEK-Info: DES-EDE3-CBC,"");
+formatted.append(bytesToHex(iv));
+
+formatted.append(LINE_SEPARATOR);
+formatted.append(LINE_SEPARATOR);
+
+Arrays.stream(privateKey.split(""(?&lt;=\\G.{64})"")).forEach(line -&gt; formatted.append(line + LINE_SEPARATOR));
+formatted.append(""-----END RSA PRIVATE KEY-----"");
+
+return formatted.toString();
+}
+
+private String bytesToHex(byte[] bytes) {
+char[] hexArray = ""0123456789ABCDEF"".toCharArray();
+char[] hexChars = new char[bytes.length * 2];
+for (int j = 0; j &lt; bytes.length; j++) {
+int v = bytes[j] &amp; 0xFF;
+hexChars[j * 2] = hexArray[v &gt;&gt;&gt; 4];
+hexChars[j * 2 + 1] = hexArray[v &amp; 0x0F];
+}
+return new String(hexChars);
+}
+</code></pre>
+
+<p>And this is the generated private key in PKCS#5 PEM format:</p>
+
+<pre><code>-----BEGIN RSA PRIVATE KEY-----
+Proc-Type: 4,ENCRYPTED
+DEK-Info: DES-EDE3-CBC,CA138D5D3C048EBD
+
++aZNZJKLvNtlmnkg+rFK6NFm45pQJNnJB9ddQ3Rc5Ak0C/Igm9EqHoOS+iy+PPjx
+pEKbhc4Qe3U0GOT9L5oN7iaWL82gUznRLRyUXtOrGcpE7TyrE+rydD9BsslJPCe+
+y7a9LnSNZuJpJPnJCeKwzy5FGVv2KmDzGTcs9IqCMKgV69qf83pOJU6Dk+bvh9YP
+3I05FHeaQYQk8c3t3onfljVIaYOfbNYFLZgNgGtPzFD4OpuDypei/61i3DeXyFUA
+SNSY5fPwp6iSeSKtwduSEJMX31TKSpqWeZmEmMNcnh8oZz2E0jRWkbkaFuZfNtqt
+aVpLN49oRpbsij+i1+udyuIXdBGRYt9iDZKnw+LDjC3X9R2ceq4AOdfsmEVYbO1i
+YNms9eXSkANuchiI2YqkKsCwqI5S8S/2Xj76zf+pCDhCTYGV3RygkN6imX/Qg2eF
+LOricZZTF/YPcKnggqNrZy4KSUzAgZ9NhzWCWOCiGFcQLYIo+qDoJ8t4FwxQYhx9
+7ckzXML0n0q5ba5pGekLbBUJ9/TdtnqfqmYrHX+4OlrR7XAu478v2QH6/QtNKdZf
+VRTqmKKH0n8JL9AgaXWipQstW5ERNZJ9YPBASQzewVNLv4gRZRTw8bYcU/hiPbWp
+eqULYYI9324RzY3UTsz3N9X+zQsT02zNdxud7XmmoHL493yyvqT9ERmF4uckGYei
+HZ16KFeKQXE9z+x0WNFAKX3nbttVlN5O7TAmUolFTwu11UDsJEjrYMZRwjheAZyD
+UnV1LwhFT+QA0r68Mto3poxpAawCJqPP50V4jbhsOb0J7sxT8fo2mBVSxTdb9+t1
+lG++x/gHcK51ApK1tF1FhRRKdtOzSib376Kmt23q0jVDNVyy09ys+8LRElOAY1Es
+LIuMMM3F7l+F4+knKh3/IkPZwRIz3f9fpsVYIePPS1bUdagzNoMqUkTwzmq6vmUP
+C5QvN6Z5ukVCObK+T8C4rya8KQ/2kwoSCRDIX6Mzpnqx6SoO4mvtBHvPcICGdOD6
+aX/SbLd9J2lenTxnaAvxWW0jkF6q9x9AAIDdXTd9B5LnOG0Nq+zI+6THL+YpBCB9
+6oMO4YChFNoEx0HZVdOc8E7xvXU2NqinmRnyh7hCR5KNfzsNdxg1d8ly67gdZQ1Q
+bk1HPKvr6T568Ztapz1J/O6YWRIHdrGyA6liOKdArhhSI9xdk3H3JFNiuH+qkSCB
+0mBYdS0BVRVdKbKcrk4WRHZxHsDsQn1/bPxok4dCG/dGO/gT0QlxV+hOV8h/4dJO
+mcUvzdW4I8XKrX5KlTGNusVRiFX3Cy8FFZQtSxdWzr6XR6u0bUKS+KjDl1KoFxPH
+GwYSTkJVE+fbjsSisQwXjWnwGGkNDuQ1IIMJOAHMK4Mly1jMdFF938WNY7NS4bIb
+IXXkRdwxhdkRDiENSMXY8YeCNBJMjqdXZtR4cwGEXO+G+fpT5+ZrfPbQYO+0E0r4
+wGPKlrpeeR74ALiaUemUYVIdw0ezlGvdhul2KZx4L82NpI6/JQ7shq9/BEW2dWhN
+aDuWri2obsNL3kk2VBWPNiE6Rn/HtjwKn7ioWZ3IIgOgyavcITPBe0FAjxmfRs5w
+VWLFBXqcyV9cu1xS4GoCNLk0MrVziUCwHmwkLIzQZos=
+-----END RSA PRIVATE KEY-----
+</code></pre>
+
+<p>Thanks in advance.</p>"
+"<p>I am trying to create a three dimensional array like this:</p>
+
+<pre><code> let insPerDay = []
+let insDuringThisWeek = [];
+let insDuringThisWeek_temp = [[], [], [], [], [], [], []];
+for (var i = 0; i &lt; spaceIterationInsWeek.length; i++){
+// this loop will repeat a variable amount of times but in this example it repeats twice
+for (let k=0; k&lt;weekArray.length; k++) {
+// will repeat a variable amount of times but in this example it repeats 7 times
+for (let j = 0; j &lt; spaceIterationInsWeek[i].length; j ++) {
+// will repeat a variable amount of time (I think in this case it's 167 times, 104 the first loop, 63 the second);
+if (spaceIterationInsWeek[i][j] &gt; weekArray[k][0] &amp;&amp; spaceIterationInsWeek[i][j] &lt; weekArray[k][1]) {
+insDuringThisWeek_temp[k].push(spaceIterationInsWeek[i][j]);
+}
+}
+insDuringThisWeek.push(insDuringThisWeek_temp[k]);
+}
+
+console.log(insDuringThisWeek.slice());
+insPerDay.push(insDuringThisWeek.slice());
+console.log(insPerDay);
+// insDuringThisWeek.push(insDuringThisWeek_temp);
+}
+</code></pre>
+
+<p>For now I the console.is logging this: </p>
+
+<p><a href=""https://i.stack.imgur.com/nUoLJ.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/nUoLJ.png"" alt=""enter image description here""></a></p>
+
+<p>Notice that the first time the child loop runs, the <strong>insDuringThisWeek.slice()</strong> is logging <strong>Array(28)</strong>, but inside, when I expand the view, it actually states <strong>36</strong> and not <em>28</em>. I know this is related with the fact that arrays are passed by reference, and that is why I am trying to use slice() to prevent that.</p>
+
+<p>In the end the intended result should be:
+<strong>1 parent array</strong> with <strong>2 child arrays</strong> each with <strong>7 grandchild arrays</strong>. Then those <strong>7 grandchild arrays</strong> should have different lenghts...</p>
+
+<p>something like:</p>
+
+<pre><code>(2) [Array(7), Array(7)]
+&gt; 0: (7) [Array(28), Array(12), Array(8), Array(0), Array(0), Array(50), Array(6)]
+&gt; 1: (7) [Array(8), Array(11), Array(3), Array(0), Array(0), Array(37), Array(4)]
+</code></pre>
+
+<p>Now the arrays are adding up like this:</p>
+
+<pre><code>(2) [Array(7), Array(14)]
+&gt; 0: (7) [Array(36), Array(23), Array(11), Array(0), Array(0), Array(87), Array(10)]
+&gt; 1: (14) [Array(36), Array(23), Array(11), Array(0), Array(0), Array(87), Array(10), Array(36), Array(23), Array(11), Array(0), Array(0), Array(87), Array(10)]
+</code></pre>
+
+<p>Is there a way to do achieve this using three loop logic?</p>
+
+<p>""Copy/pastable"" data for <strong>spaceIterationInsWeek</strong>:</p>
+
+<pre><code> var spaceIterationInsWeek = [[""1538032574112"", ""1538032574299"", ""1538032574489"", ""1538032574707"", ""1538032574958"", ""1538032580589"", ""1538032580744"", ""1538032583050"", ""1538035431634"", ""1538035432105"", ""1538044237902"", ""1538044253095"", ""1538089207793"", ""1538089207972"", ""1538089208184"", ""1538089209765"", ""1538089209935"", ""1538089210172"", ""1538140319898"", ""1538140320415"", ""1538393131974"", ""1538393132133"", ""1538393132301"", ""1538393134682"", ""1538419054736"", ""1538419056057"", ""1538419056445"", ""1538421078992"", ""1538423320582"", ""1538423324199"", ""1538423328179"", ""1538423331484"", ""1538423472877"", ""1538423584874"", ""1538423586801"", ""1538423604206"", ""1538423664249"", ""1538423668981"", ""1538423682914"", ""1538423691802"", ""1538423866031"", ""1538423867420"", ""1538423868327"", ""1538423875373"", ""1538424176251"", ""1538424179511"", ""1538424231217"", ""1538424283692"", ""1538424327861"", ""1538424327866"", ""1538424327868"", ""1538424327871"", ""1538424327877"", ""1538424327882"", ""1538424327884"", ""1538424327891"", ""1538424327896"", ""1538426250753"", ""1538426251268"", ""1538426251642"", ""1538428174561"", ""1538428174925"", ""1538428175168"", ""1538428179449"", ""1538428179612"", ""1538428185771"", ""1538428199625"", ""1538428204510"", ""1538428204700"", ""1538428204883"", ""1538497882619"", ""1538498290347"", ""1538498319612"", ""1538498370580"", ""1538498465625"", ""1538498510231""],[""1538033851202"", ""1538035355166"", ""1538035355949"", ""1538035370713"", ""1538043037913"", ""1538043065714"", ""1538043065993"", ""1538043530533"", ""1538043531900"", ""1538043533828"", ""1538044225832"", ""1538089267124"", ""1538089267318"", ""1538089267543"", ""1538393117968"", ""1538393118102"", ""1538393118254"", ""1538393119966"", ""1538393120110"", ""1538393120362"", ""1538393120538"", ""1538393120722"", ""1538414187921"", ""1538414188175"", ""1538414188327"", ""1538414191291"", ""1538414191516"", ""1538424651376"", ""1538424672070"", ""1538424672073"", ""1538424672077"", ""1538424672080"", ""1538424673236"", ""1538424673238"", ""1538424673241"", ""1538424673244"", ""1538424679001"", ""1538424679010"", ""1538424679014"", ""1538424679017"", ""1538428236679"", ""1538428236846"", ""1538428237012"", ""1538428237172"", ""1538428237341"", ""1538428237491"", ""1538428237649"", ""1538428237816"", ""1538428237982"", ""1538428238159"", ""1538428238334"", ""1538498266744"", ""1538498341583"", ""1538498481082"", ""1538498494065""]]
+</code></pre>
+
+<p>""Copy/pastable"" data for <strong>weekArray</strong> :</p>
+
+<pre><code> var weekArray = [[1538002800000, 1538089200000], [1538089200000, 1538175600000],[1538175600000, 1538262000000], [1538262000000, 1538348400000],[1538348400000, 1538434800000],[1538434800000, 1538521200000],[1538521200000, 1538607600000]]
+</code></pre>"
+"<p>when i try to instantiate an object, from a class that extends a generic abstract class. It won't let me since the generic abstract class does not have a suitable constructor. </p>
+
+<pre><code>public abstract class AbstractClass&lt;T&gt; {
+
+private final Class&lt;T&gt; entityClass;
+
+public AbstractClass(Class&lt;T&gt; entityClass) {
+this.entityClass = entityClass;
+}
+}
+</code></pre>
+
+<p>this is the generic abstract class I am talking about.</p>
+
+<pre><code>public class Imp extends AbstractClass {
+
+public Imp(Class entityClass) {
+super(entityClass);
+}
+
+}
+</code></pre>
+
+<p>If i want to ever access the Imp class, then I would try to instantiate it through a normal constructor. But i get following error when trying:</p>
+
+<pre><code>public class Imp extends AbstractClass {
+
+public Imp(){
+
+}
+
+public Imp(Class entityClass) {
+super(entityClass);
+}
+
+}
+</code></pre>
+
+<p>constructor AbstractClass in class AbstractClass cannot be applied to given types required: Class</p>
+
+<p>So if i understand correctly, by extending a generic abstract class you cannot instantiate the class anywhere ever? </p>
+
+<p>If not being able to access the Imp class from other classes, how should I ever use the class?</p>
+"
+"<p>I am trapped in a Calendar/TimeZone/DateComponents/Date hell and my mind is spinning.</p>
+
+<p>I am creating a diary app and I want it to work worldwide (with a iso8601 calendar).</p>
+
+<p>I am trying to create a calendar view on iOS similar to the macOS calendar so that my user can navigate their diary entries (notice the 7x6 grid for each month):</p>
+
+<p><a href=""https://i.stack.imgur.com/EQyye.png"" rel=""noreferrer""><img src=""https://i.stack.imgur.com/EQyye.png"" alt=""/Users/adamwaite/Desktop/Screenshot 2018-10-04 at 08.22.24.png""></a></p>
+
+<p>To get the 1st of the month I can do something like the following:</p>
+
+<pre><code>func firstOfMonth(month: Int, year: Int) -&gt; Date {
+
+let calendar = Calendar(identifier: .iso8601)
+
+var firstOfMonthComponents = DateComponents()
+// firstOfMonthComponents.timeZone = TimeZone(identifier: ""UTC"") // &lt;- fixes daylight savings time
+firstOfMonthComponents.calendar = calendar
+firstOfMonthComponents.year = year
+firstOfMonthComponents.month = month
+firstOfMonthComponents.day = 01
+
+return firstOfMonthComponents.date!
+
+}
+
+(1...12).forEach {
+
+print(firstOfMonth(month: $0, year: 2018))
+
+/*
+
+Gives:
+
+2018-01-01 00:00:00 +0000
+2018-02-01 00:00:00 +0000
+2018-03-01 00:00:00 +0000
+2018-03-31 23:00:00 +0000
+2018-04-30 23:00:00 +0000
+2018-05-31 23:00:00 +0000
+2018-06-30 23:00:00 +0000
+2018-07-31 23:00:00 +0000
+2018-08-31 23:00:00 +0000
+2018-09-30 23:00:00 +0000
+2018-11-01 00:00:00 +0000
+2018-12-01 00:00:00 +0000
+*/
+
+}
+</code></pre>
+
+<p>There's an immediate issue here with daylight savings time. That issue can be ""fixed"" by uncommenting the commented line and forcing the date to be calculated in UTC. I feel as though by forcing it to UTC the dates become invalid when viewing the calendar view in different time zones.</p>
+
+<p>The real question is though: How do I get the first Monday in the week containing the 1st of the month? For example, how do I get Monday 29th February, or Monday 26th April? (see the macOS screenshot). To get the end of the month, do I just add on 42 days from the start? Or is that naive?</p>
+
+<p><strong>Edit</strong></p>
+
+<p>Thanks to the current answers, but we're still stuck.</p>
+
+<p>The following works, until you take daylight savings time into account:</p>
+
+<p><a href=""https://i.stack.imgur.com/DINaG.png"" rel=""noreferrer""><img src=""https://i.stack.imgur.com/DINaG.png"" alt=""almost""></a></p>"
+"<p>I'm trying to use <em>ReactJS</em> for the first time, so I'm following the <a href=""https://reactjs.org/tutorial/tutorial.html#setup-option-2-local-development-environment"" rel=""nofollow noreferrer"">official tutorial</a> but I can't create a new <em>React Project</em> using <code>create-react-app</code>.</p>
+
+<p>It doesn't work, when I run it simply does ""nothing"", see following:</p>
+
+<p><a href=""https://i.stack.imgur.com/FRlH9.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/FRlH9.png"" alt=""terminal""></a></p>
+
+<p>I've also tried with sudo privileges with no success.
+Any suggestions, please?</p>
+
+<p><strong>Note:</strong> I'm on <em>Linux Mint 18 Cinnamon</em></p>
+
+<p>Thanks</p>
+
+<h2>UPDATE</h2>
+
+<p><a href=""https://i.stack.imgur.com/MiaIZ.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/MiaIZ.png"" alt=""enter image description here""></a></p>
+
+<p><code>sudo npm i -g create-react-app</code> works fine.</p>"
+"<p>I have the following for loop: </p>
+
+<pre><code>import { createSelector } from 'reselect';
+
+let dirtyForm;
+
+export const isFormDirty = createSelector(
+getForms,
+getState,
+(forms, state) =&gt; {
+for(let i = 0; i &lt; forms.length; i += 1){
+dirtyForm = isDirty(forms[i])(state);
+}
+
+return dirtyForm;
+}
+);
+</code></pre>
+
+<p>isDirty from takes a single form name from the forms array and checks if the form has been edited. The reason why I am looping through the form names is to find out if the form available on screen has been edited.</p>
+
+<p>it works but is there a way not having to use the for loop at all in this case?</p>"
+"<p>I have 3 columns</p>
+
+<p><div class=""snippet"" data-lang=""js"" data-hide=""false"" data-console=""true"" data-babel=""false"">
+
+<div class=""snippet-code"">
+
+<pre class=""snippet-code-css lang-css prettyprint-override""><code>.bookingTotals.middleRow {
+
+height: 315px;
+
+bottom: 400px;
+
+}
+
+
+
+.bookingTotals.row {
+
+height: 400px;
+
+bottom: 0;
+
+margin-left: 920px;
+
+/*margin-right: 55px;*/
+
+}</code></pre>
+
+<pre class=""snippet-code-html lang-html prettyprint-override""><code>&lt;div id ""myParent""&gt;
+
+&lt;div style=""float: left; width: 400px;""&gt;
+
+//some stuff
+
+&lt;div&gt;
+
+&lt;div style=""float: left; width: 400px;""&gt;
+
+//some stuff
+
+&lt;div&gt;
+
+&lt;div style=""float: left; width: 400px;""&gt;
+
+&lt;div style=""height:50px;""&gt;
+
+//top stuff
+
+&lt;/div&gt;
+
+&lt;div class=""bookingTotals middleRow""&gt;
+
+//middle stiff that fills the gap
+
+&lt;/div&gt;
+
+&lt;div class=""bookingTotals row""&gt;
+
+//bottom stuff that i want fixed to the bottom
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;</code></pre>
+
+</div>
+
+</div>
+
+</p>
+
+<p>I want to split the last column into 3 layers where the top and bottom <code>div</code> heights are known. So I want the middle <code>div</code> to fill the space between.</p>
+
+<p>What actually happens is that this footer <code>div</code> is displayed outside <code>myParent</code> as if it had no relation to it. What am I doing wrong?</p>"
+"<p>I am trying to use <code>FlexBoxLayout</code> in my app, but I am running into errors continuously. I have tried all kinds of settings and configs, but different errors keep popping up. What I have now:</p>
+
+<p>build.gradle (app):</p>
+
+<pre><code>dependencies {
+implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+implementation 'com.android.support:appcompat-v7:28.0.0'
+implementation 'com.android.support:support-v4:28.0.0'
+
+implementation 'com.google.android:flexbox:1.1.0'
+implementation ""androidx.appcompat:appcompat:1.0.0""
+}
+</code></pre>
+
+<p>And this gives me the error:</p>
+
+<blockquote>
+<p>Manifest merger failed : Attribute application@appComponentFactory value=(android.support.v4.app.CoreComponentFactory) from [com.android.support:support-compat:28.0.0] AndroidManifest.xml:22:18-91
+is also present at [androidx.core:core:1.0.0] AndroidManifest.xml:22:18-86 value=(androidx.core.app.CoreComponentFactory).
+Suggestion: add 'tools:replace=""android:appComponentFactory""' to element at AndroidManifest.xml:23:5-131:19 to override.</p>
+</blockquote>
+
+<p>When I add that <code>tools:replace=""android:appComponentFactory""'</code> to my Manifest, I get the following problem:</p>
+
+<blockquote>
+<p>Manifest merger failed with multiple errors, see logs</p>
+</blockquote>
+
+<p>And that is where I kind of give up, I don't even know what logs to go look at.</p>
+
+<p><strong>Update</strong> when I only add <code>flexbox</code> to the dependencies, the app crashes with a <code>NoClassDefFoundError</code> on the <code>androidx.core.view.ViewCompat</code> class.</p>"
+"<p>I've put a custom class <code>Unit</code> in an <code>std::atomic</code>. Class looked as follows with a default constructor</p>
+
+<pre><code>namespace Base
+{
+template &lt;typename T, typename R, typename D&gt;
+class Unit
+{
+public:
+constexpr Unit() = default;
+private:
+T m_Value;
+};
+}
+</code></pre>
+
+<p>It used to work fine until I noticed I forgot to initialize the only member of my class to zero in the default constructor. Therefore I removed the <code>= default</code> and provided an implementation of the constructor</p>
+
+<pre><code>template &lt;typename T, typename R, typename D&gt;
+constexpr Unit&lt;T, R, D&gt;::Unit() :
+m_Value(T(0))
+{ }
+</code></pre>
+
+<p>Now I am getting a compiler error:</p>
+
+<p><code>Error C2280 'std::atomic&lt;Base::Unit&gt;::atomic(void) noexcept': attempting to reference a deleted function</code></p>
+
+<p>My hunch was that that's because of the fact that I now provide a custom constructor, which causes the default copy constructor to no longer be implicit defined.</p>
+
+<p>So, I added this as well to the class declaration</p>
+
+<pre><code>Unit(const Unit&lt;T, R, D&gt;&amp; U) = default;
+</code></pre>
+
+<p>However, I'm getting the same error. I'm not sure what I could be. I'm not sure which deleted function the compiler is referring to.</p>
+
+<p>Any help would be appreciated</p>"
+"<p>I have the following code in Java 7:</p>
+
+<pre><code>List&lt;Integer&gt; idMappers= new ArrayList&lt;&gt;();
+
+//getting information from a Map&lt;String, List&lt;String&gt;&gt;
+List&lt;String&gt; ids= idDataStore.lookupId(id);
+
+for (int i = 0; i &lt; ids.size(); i++) {
+
+//getting information from a Map&lt;String, List&lt;Integer&gt;&gt;
+List&lt;Integer&gt; mappers= idDataStore.lookupMappers(ids.get(i));
+
+if (mappers!= null) {
+for (int j = 0; j &lt; x.size(); j++) {
+idMappers.add(mappers.get(j));
+}
+}
+}
+</code></pre>
+
+<p>I'm trying to change this to Streams</p>
+
+<pre><code>List&lt;Integer&gt; idMappers= new ArrayList&lt;&gt;();
+idDataStore.lookupIdMappings(id).forEach(id-&gt; {
+idDataStore.lookupSegments(id).forEach(mapper-&gt;{
+idSegments.add(segment);
+});
+});
+</code></pre>
+
+<p>My problem is <code>idDataStore.lookupSegments(id)</code> can sometimes throw null so my stream is breaking. How Can I do a null check in Stream?</p>"
+"<p>I had a suspect that a bug in one of my Codename One projects was caused by concurrent executions of the same listener <em>(if the user taps a button very quickly more times, invoking its listener before it ended the execution)</em>... I added a lock variable in the code, to avoid multiple executions at the same time, and this solved the bug.</p>
+
+<p>This is my first time that I have this kind of problem. Reading on the web, it's suggested to use the <code>synchronized</code> Java keyword (however I'm not sure if it can be useful in this case).</p>
+
+<p>My question is if the <code>synchronized</code> Java keyword is supported by Codename One. </p>
+"
+"<p>We have a working kubernetes cluster in one zone on aws, we want to move it to another zone.</p>
+
+<p>The k8s cluster is installed with the help of kops.</p>
+
+<p>We don't need zero down time.</p>"
+"<p>I just started learning go and 1 of the things I really wanna learn to do is making sites in go. I watched some tutorials for it and making sites worked, but I didn't know how to add styles.</p>
+
+<p>I searched for some examples on the internet and stackoverflow, but couldn't find one that actually worked for me (and stayed simple). </p>
+
+<p>Underneath is the code that I ended up with.
+But I think I got a new problem now cause in the console it says:
+<a href=""https://i.stack.imgur.com/eGtBs.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/eGtBs.png"" alt=""error""></a></p>
+
+<p>I tried a lot of solutions that I found on the internet for this but none of them worked so I am pretty sure it is because I imported the css wrongly in go.</p>
+
+<p><strong>Go (functions.go):</strong></p>
+
+<pre><code>package main
+
+import (
+""html/template""
+""net/http""
+)
+
+type IndexPage struct {
+Title string
+SubTitle string
+}
+
+func indexHandler(w http.ResponseWriter, r *http.Request){
+p := IndexPage{Title: ""Pizza site"", SubTitle: ""everyone loves pizzas""}
+t, _ := template.ParseFiles(""index.html"")
+t.Execute(w,p)
+}
+
+func main() {
+
+http.HandleFunc(""/"", indexHandler)
+http.Handle(""/css/"", http.FileServer(http.Dir(""css"")))
+http.ListenAndServe("":8080"", nil)
+}
+</code></pre>
+
+<p><strong>Html (index.html):</strong></p>
+
+<pre><code>&lt;html lang=""nl""&gt;
+&lt;head&gt;
+&lt;meta charset=""utf-8""&gt;
+&lt;title&gt;Pizzaaaaaaa&lt;/title&gt;
+&lt;link rel=""stylesheet"" href=""css/style.css"" type=""text/css""&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;article&gt;
+&lt;h1&gt;
+{{ .Title }}
+&lt;span class=""subtitle""&gt;{{ .SubTitle }}&lt;/span&gt;
+&lt;/h1&gt;
+&lt;p&gt;Some text&lt;/p&gt;
+&lt;/article&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p><strong>CSS ( /css/style.css )</strong></p>
+
+<pre><code>*{
+color: rgb(250, 157, 157);
+}
+</code></pre>
+
+<p><strong>FileTree</strong></p>
+
+<p><a href=""https://i.stack.imgur.com/1ts5a.png"" rel=""nofollow noreferrer""><img src=""https://i.stack.imgur.com/1ts5a.png"" alt=""FileTree""></a></p>"
+"<p>I'm really stuck with this SQL. I have two MS Access Database tables setup as below:</p>
+
+<p><strong>data</strong> table</p>
+
+<pre><code>ID
+UID
+MYNAME
+</code></pre>
+
+<p><strong>monthdata</strong> table</p>
+
+<pre><code>ID
+DATAUID
+MONTHVAL
+VAL
+</code></pre>
+
+<p>I don't want to change this table structure. I have months and months worth of data in monthdata table which is associated to a reference in the data table.</p>
+
+<p>I'm trying to end up returning three months worth of data in a <em>single query and a single row</em> like this:</p>
+
+<pre><code>UID - MONTHVAL - VAL - MONTHVAL - VAL - MONTHVAL - VAL
+</code></pre>
+
+<p>So if we wanted to get the last three months of data for UID ABC123 I was trying to run the following query:</p>
+
+<pre><code>SELECT data.uid, monthdata.monthval, monthdata.val
+FROM data
+LEFT JOIN monthdata ON data.UID = monthdata.dataUID AND monthdata.monthval = ""01/09/2018""
+LEFT JOIN monthdata ON data.UID = monthdata.dataUID AND monthdata.monthval = ""01/08/2018""
+LEFT JOIN monthdata ON data.UID = monthdata.dataUID AND monthdata.monthval = ""01/07/2018""
+WHERE UID = 'ABC123'
+</code></pre>
+
+<p>However it tells me that it is invalid syntax. However, despite my googling I can't find out how I can do it . The only alternative I can see is to run three separate queries and put the date in the WHERE but in the real world example I have a lot more months.</p>"
+"<p>How do I make a string that was declared using single quotes, evaluate <code>\n</code> as if it was declared using double quotes?</p>
+
+<p>ie.</p>
+
+<pre><code>echo 'Line1\nLine2'; // Does not split.
+echo ""Line1\nLine2""; // It splits.
+
+$s = 'A string declared using \n single quotes which I can\'t change...';
+echo $s // I need this to have the split at \n
+</code></pre>"
+"<p>I have this document structure in firestore collection</p>
+
+<pre><code>{ message: 'hello world', time: 1538398128 }
+</code></pre>
+
+<p>time value is set by client when it posts message with this function</p>
+
+<pre><code>moment().unix()
+</code></pre>
+
+<p>The problem is that my clients have different time and if I sort documents by time it is inconsistent, like this example</p>
+
+<pre><code>{ message: 'aaa', time: 1538398317 } // client 1 post at 14.00:00
+{ message: 'bbb', time: 1538398257 } // client 2 post at 14:00:10
+</code></pre>
+
+<p>and on client I see ""bbb"" before ""aaa"".
+How can I fix this problem?
+I know that exists firebase.firestore.FieldValue.serverTimestamp(), but it gives me the value only after I posted the document, i can't use this on client.
+Thanks</p>"
