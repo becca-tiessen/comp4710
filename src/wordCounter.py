@@ -20,7 +20,7 @@ def removeUnwantedSymbols(wordlist):
     wordlist = wordlist.replace("|","");
     return wordlist
 
-file = open('FemaleQuestion.txt', 'r')
+file = open('../assets/FemaleQuestion.txt', 'r')
 wordstring = file.read()
 
 wordlist = removeUnwantedSymbols(wordstring)
