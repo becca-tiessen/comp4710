@@ -8,5 +8,5 @@
 - This is the query we used to run in the Stack Overflow Data Explorer (https://data.stackexchange.com/stackoverflow/query/new)
 
 
-## CSV files
-- Our training data as well as our Apriori results, decision tree calculations, and text analysis input files are stored in CSV files in the assets folder.
+## Asset files
+- Our training data as well as our Apriori results, decision tree calculations, and text analysis input and result files are stored in files in the assets folder.
